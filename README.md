@@ -1,1 +1,1 @@
-# scamados_loteria
+# Loteria dos scamados
