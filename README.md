@@ -1,0 +1,1 @@
+# scamados_loteria
