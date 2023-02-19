@@ -1,0 +1,32 @@
+{
+  "name": "scamados_loteria_onchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "start_local": "ganache -i 666 -m \"teach core boat want author animal neglect social bone page modify mass\"",
+    "vtestnet": "truffle run verify Token1 Token2 Token3 Uniswap --network testnet",
+    "mtestnet": "truffle migrate --network testnet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasarchangelo/scamados_loteria.git"
+  },
+  "keywords": [],
+  "author": "Lucas Archangelo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasarchangelo/scamados_loteria/issues"
+  },
+  "homepage": "https://github.com/lucasarchangelo/scamados_loteria#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1",
+    "@truffle/hdwallet-provider": "^2.1.7",
+    "dotenv": "^16.0.3",
+    "truffle-plugin-verify": "^0.6.1"
+  }
+}
