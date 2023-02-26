@@ -6,10 +6,11 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 import "./VRFV2Consumer.sol";
 
-contract Lottery is Ownable, VRFV2Consumer {
+contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
     using Counters for Counters.Counter;
 
     struct User {
@@ -33,7 +34,6 @@ contract Lottery is Ownable, VRFV2Consumer {
 
     Counters.Counter private lotteryId;
     LotteryStruct public lottery;
-    address public feeWallet;
     uint256 public fee;
 
     constructor(
@@ -49,7 +49,7 @@ contract Lottery is Ownable, VRFV2Consumer {
         fee = _fee;
     }
 
-    function buyTicket() external payable {
+    function buyTicket() external payable nonReentrant {
         require(
             !lottery.finalized,
             "This lottery has already finalized, wait for results!"
@@ -95,7 +95,7 @@ contract Lottery is Ownable, VRFV2Consumer {
         }
     }
 
-    function claim() external {
+    function claim() external nonReentrant {
         require(!lottery.claimed, "The winner already claimed its prize.");
         require(lottery.finalized, "This lottery isn't finalized yet.");
         require(
@@ -110,7 +110,7 @@ contract Lottery is Ownable, VRFV2Consumer {
             "You dont have any ticket to claim here."
         );
         require(
-            ticketOwners[currentLottery][msg.sender].claimed,
+            !ticketOwners[currentLottery][msg.sender].claimed,
             "You have alread claimed your prize."
         );
         require(lottery.winner == msg.sender, "You're not the winner.");
@@ -121,11 +121,13 @@ contract Lottery is Ownable, VRFV2Consumer {
         uint256 _feeAmount = _calcFee(lottery.balance);
         uint256 prize = lottery.balance - _feeAmount;
 
-        payable(feeWallet).transfer(_feeAmount);
+        require(resetLottery(), "Lottery needs to be reseted.");
+
+        payable(owner()).transfer(_feeAmount);
         payable(msg.sender).transfer(prize);
     }
 
-    function resetLottery() private {
+    function resetLottery() private returns (bool) {
         // Change the pointer to the next position.
         lotteryId.increment();
 
@@ -136,7 +138,9 @@ contract Lottery is Ownable, VRFV2Consumer {
         lottery.indexChainLink = 0;
         lottery.winner = address(0);
         
-        lottery.ticketsCount.reset();       
+        lottery.ticketsCount.reset();
+
+        return true;       
     }
 
     function _calcFee(uint256 amount) private view returns (uint256) {

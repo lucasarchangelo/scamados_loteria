@@ -21,7 +21,9 @@
 require("dotenv").config();
 const mnemonic = process.env["MNEMONIC"];
 const infuraProjectId = process.env["INFURA_PROJECT_ID"];
+const maticProjectId = process.env["MATIC_PROJECT_ID"];
 const BSCSCANAPIKEY = process.env["BSCSCANAPIKEY"];
+const POLYGONSCANAPIKEY = process.env["POLYGONSCANAPIKEY"];
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
@@ -39,8 +41,9 @@ module.exports = {
   contracts_build_directory: "../Client/contracts",
   plugins: ["truffle-plugin-verify"],
   api_keys: {
-   bscscan: BSCSCANAPIKEY
- },
+    bscscan: BSCSCANAPIKEY,
+    polygonscan: POLYGONSCANAPIKEY,
+  },
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -81,20 +84,34 @@ module.exports = {
       skipDryRun: true, // Skip dry run before migrations? (default: false for public nets)
     },
     testnet: {
-     provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-2-s3.binance.org:8545`),
-     network_id: 97,
-     confirmations: 1,
-     timeoutBlocks: 20000,
-     networkCheckTimeout: 9999999,
-     skipDryRun: true
-   },
-   bsc: {
-     provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
-     network_id: 56,
-     confirmations: 10,
-     timeoutBlocks: 200,
-     skipDryRun: true
-   },
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-2-s3.binance.org:8545`),
+      network_id: 97,
+      confirmations: 1,
+      timeoutBlocks: 20000,
+      networkCheckTimeout: 9999999,
+      skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    mumbai: {
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.maticvigil.com/v1/${maticProjectId}`),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    matic: {
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-rpc.com`),
+      network_id: 137,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
     //
     // Useful for private networks
     // private: {
