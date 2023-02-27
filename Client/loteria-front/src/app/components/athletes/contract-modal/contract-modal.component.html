@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Contract</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h6>#{{athlete.id}}</h6>
+    <h6>{{athlete.name}}</h6>
+    <h6>Contract Value: {{athlete.contractValue}} SPT</h6>
+    <h4>Remaining plays on contract:</h4>
+    <h3>{{athlete.contractPlays}} / {{athlete.maxContractPlays}}</h3>
+    <h4>SPT to be claimed when Renewed or Released:</h4>
+    <h3>{{athlete.claimValue}}</h3>
+    <h6>Renew Cost: {{getRenewValue(athlete.contractValue)}} SPT (10% Contract Value)</h6>
+</div>
+<div class="modal-footer">
+    <ng-container *ngIf="athlete.maxContractPlays <= athlete.contractPlays">
+        <button type="button" class="btn btn-success btn-left" (click)="btnRenew()">RENEW CONTRACT
+            ({{getRenewValue(athlete.contractValue)}} SPT)</button>
+        <button type="button" class="btn btn-danger btn-right" (click)="btnRelease()">RELEASE ATHLETE</button>
+    </ng-container>
+</div>

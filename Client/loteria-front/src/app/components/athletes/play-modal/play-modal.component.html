@@ -1,0 +1,171 @@
+<div class="modal-header">
+    <h4 class="modal-title">Play a match!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home">Exhibition</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab" aria-controls="profile">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" role="tab" aria-controls="contact">Training</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <h5> Available Sports </h5><br>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="../../../../assets/img/sport-boxing.JPG" class="img-fluid rounded-start"
+                                    alt="..." style='height: 125px; width: 125px; object-fit: contain'>
+
+                                <div class="card-body">
+                                    <p class="card-text">Boxing</p>
+                                    <div class="row g-0">
+                                        <div class="col-md-6 divisor-right">
+                                            <label>Odds</label><br>
+                                            <span>WIN = 50% (15 SPT)</span><br>
+                                            <span>LOSE = 50% (2 SPT)</span>
+                                        </div>
+                                        <div class="col-md-5 divisor-margin">
+                                            <label>Modifiers</label><br>
+                                            <span>Height * 5%</span><br>
+                                            <span>Weight * 5%</span><br>
+                                            <span>Strength * 10%</span><br>
+                                            <span>Agility * 3%</span><br>
+                                            <span>Preference = +3%</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row g-0">
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="btnPlay()">Play</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="../../../../assets/img/sport-swimming.JPG" class="img-fluid rounded-start"
+                                    alt="..." style='height: 125px; width: 125px; object-fit: contain'>
+
+                                <div class="card-body">
+                                    <p class="card-text">Swimming</p>
+                                    <div class="row g-0">
+                                        <div class="col-md-6 divisor-right">
+                                            <label>Odds</label><br>
+                                            <span>1º = 10% (15 SPT)</span><br>
+                                            <span>2º = 10% (10 SPT)</span><br>
+                                            <span>3º = 10% (7 SPT)</span><br>
+                                            <span>4º = 10% (5 SPT)</span><br>
+                                            <span>5º = 10% (4 SPT)</span><br>
+                                            <span>6º = 10% (3 SPT)</span><br>
+                                            <span>7º = 10% (2 SPT)</span><br>
+                                            <span>8º = 10% (1 SPT)</span>
+                                        </div>
+                                        <div class="col-md-5 divisor-margin">
+                                            <label>Modifiers</label><br>
+                                            <span>Height * 10%</span><br>
+                                            <span>Weight * -5%</span><br>
+                                            <span>Strength * 5%</span><br>
+                                            <span>Agility * 5%</span><br>
+                                            <span>Preference = +5%</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row g-0">
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="btnPlay()">Play</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-sm">
+                            <img src="../../../../assets/img/sport-chess.JPG" class="img-fluid rounded-start" alt="..."
+                                style='height: 125px; width: 125px; object-fit: contain'>
+
+                            <div class="card-body">
+                                <p class="card-text">Chess</p>
+                                <div class="row g-0">
+                                    <div class="col-md-6 divisor-right">
+                                        <label>Odds</label><br>
+                                        <span>WIN = 50% (15 SPT)</span><br>
+                                        <span>LOSE = 50% (2 SPT)</span>
+                                    </div>
+                                    <div class="col-md-5 divisor-margin">
+                                        <label>Modifiers</label><br>
+                                        <span>Intelligence * 25%</span><br>
+                                        <span>Preference = +10%</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row g-0">
+                                    <div class="col-md-12">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="btnPlay()">Play</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5> Coming Soon </h5><br>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="../../../../assets/img/sport-boxing.JPG" class="img-fluid rounded-start"
+                                    alt="..." style='height: 125px; width: 125px; object-fit: contain'>
+
+                                <div class="card-body">
+                                    <p class="card-text">Marathon</p>
+                                    <div class="row g-0">
+                                        <div class="col-md-6 divisor-right">
+                                            <label>Odds</label><br>
+                                            <span>1º = 10% (15 SPT)</span><br>
+                                            <span>2º = 10% (7 SPT)</span><br>
+                                            <span>3º = 10% (3 SPT)</span>
+                                        </div>
+                                        <div class="col-md-5 divisor-margin">
+                                            <label>Modifiers</label><br>
+                                            <span>Strength * 2%</span><br>
+                                            <span>Agility * 10%</span><br>
+                                            <span>Preference = +5%</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row g-0">
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="btnPlay()">Play</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">EVENTS</div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">TRAINING</div>
+</div>

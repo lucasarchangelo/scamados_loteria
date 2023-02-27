@@ -1,0 +1,28 @@
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.card-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.divisor-right {
+    border-right: 1px solid #999999;
+}
+
+.divisor-margin {
+    margin-left: 8px;
+}
+
+.card {
+    margin: 8px 8px 8px 8px;
+}

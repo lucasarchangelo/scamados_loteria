@@ -1,0 +1,55 @@
+<div class="main">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>My Athletes Contracts</h2>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary right" (click)="btnNewAthleteModal()">Discover New
+                Athlete</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="card mb-3" style="max-width: 360px;" *ngFor="let element of listAthletes;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img [src]="element.img" class="img-fluid rounded-start" alt="...">
+                    <h6>{{element.name}}</h6>
+                    <h6>{{element.id}}</h6>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <span>Gender: </span>{{element.gender}} &nbsp;
+                        <i class="bi bi-gender-male" *ngIf="element.gender==='Male'"></i>
+                        <i class="bi bi-gender-female" *ngIf="element.gender==='Female'"></i><br>
+                        <span>Height: </span>{{element.height}} (cm) &nbsp;<i class="bi bi-cursor-text"></i><br>
+                        <span>Weight: </span>{{element.weight}} (kg) &nbsp;<i class="bi bi-hdmi"></i><br>
+                        <span>Strength: </span>{{element.strength}} &nbsp;<i class="bi bi-bricks"></i><br>
+                        <span>Agility: </span>{{element.agility}} &nbsp;<i class="bi bi-bullseye"></i><br>
+                        <span>Inteligence: </span>{{element.inteligence}} &nbsp;<i class="bi bi-lightbulb"></i><br>
+                        <span>Preference: </span> &nbsp;{{element.preference}}<br>
+                        <span>Category: </span>{{element.category}} &nbsp;<br>
+                        <p class="card-text"><small class="text-muted">Energia:
+                                {{element.energy}}/{{element.maxEnergy}}</small><i class="bi bi-lightning-charge"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <button type="button-right" [ngClass]="getContractButtonClass(element)" class="btn btn-primary"
+                            (click)="btnContract(element)">Contract Details</button>
+                        <button *ngIf="element.contractPlays < element.maxContractPlays" type="button"
+                            class="btn btn-primary" (click)="btnPlay(element)"
+                            [disabled]="element.energy >= element.maxEnergy">Play</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
