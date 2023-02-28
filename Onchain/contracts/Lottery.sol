@@ -38,6 +38,11 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
     LotteryStruct public lottery;
     uint256 public fee;
 
+    event TicketBought(address indexed buyer, uint256 price, uint256 ticketNumber);
+    event LotteryFinalized(address owner, uint256 totalValue, uint256 ticketAmount);
+    event ClaimedPrize(address indexed winner, uint256 totalPrize, uint256 fee);
+    event ChangedProperties(address indexed owner, string name, uint256 ticketPrize, uint256 fee);
+
     constructor(
         uint64 _subscriptionId,
         address _cordinatorAddress,
@@ -74,6 +79,8 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
         tickets[currentLottery][currentLotteryPosition] = msg.sender;
 
         lottery.balance += msg.value;
+
+        emit TicketBought(msg.sender, msg.value, currentLottery);
     }
 
     function finalizeLottery() external onlyOwner {
@@ -81,6 +88,7 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
         lottery.finalized = true;
 
         lottery.indexChainLink = requestRandomWords(1);
+        emit LotteryFinalized(msg.sender, lottery.balance, lottery.ticketsCount.current());
     }
 
     function fulfillRandomWords(
@@ -127,6 +135,7 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
 
         payable(owner()).transfer(_feeAmount);
         payable(msg.sender).transfer(prize);
+        emit ClaimedPrize(msg.sender, prize, _feeAmount);
     }
 
     function resetLottery() private returns (bool) {
@@ -156,5 +165,12 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
         lottery.name = _name;
         lottery.ticketPrice = _ticketPrice;
         fee = _fee;
+
+        emit ChangedProperties(msg.sender, _name, _ticketPrice, _fee);
+    }
+
+    // Only if we have some problem to use this 
+    function getAllBalance() external onlyOwner {
+       payable(msg.sender).transfer(address(this).balance);
     }
 }
