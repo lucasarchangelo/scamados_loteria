@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Athlete } from 'src/app/models/athlete';
+import { Lottery } from 'src/app/models/lottery';
 
 @Component({
   selector: 'app-contract-modal',
@@ -9,19 +9,15 @@ import { Athlete } from 'src/app/models/athlete';
 })
 export class ContractModalComponent {
 
-  @Input() public athlete: Athlete = new Athlete();
+  @Input() public lottery: Lottery = new Lottery();
 
   constructor(public modal: NgbActiveModal) { }
 
-  public getRenewValue(contractValue: number): number {
-    return Math.floor(contractValue * 0.1);
+  public btnBuy(): void {
+    this.modal.close('buy');
   }
 
-  public btnRenew(): void {
-    this.modal.close('renew');
-  }
-
-  public btnRelease(): void {
-    this.modal.close('release');
+  public btnClose(): void {
+    this.modal.close('close');
   }
 }

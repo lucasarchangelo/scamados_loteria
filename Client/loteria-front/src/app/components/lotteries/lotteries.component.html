@@ -1,0 +1,45 @@
+<div class="main">
+    <!-- <div class="row">
+        <div class="col-md-3">
+            <h2>My Athletes Contracts</h2>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary right" (click)="btnNewAthleteModal()">Discover New
+                Athlete</button>
+        </div>
+    </div>
+    <br> -->
+    <div class="row">
+        <div class="card mb-3" style="max-width: 360px;" *ngFor="let element of listLotteries;">
+            <div class="row g-0 lotterybox">
+                <div class="col-md-4">
+                    <img [src]="element.img" class="img-fluid rounded-start" alt="...">
+                    <br>
+                    <h6>ID: {{element.id}}</h6>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <span>Ticket Price: </span>{{element.ticketPrice | currency}} &nbsp; <br>
+                        <span>Tickets Count: </span>{{element.ticketsCount}} &nbsp; <br>
+                        <span>Balance: </span>{{element.balance | currency}} &nbsp; <br>
+                        <span>Tax: </span>{{element.tax}} %
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <button *ngIf="element.finalized" type="button-right" class="btn btn-primary"
+                            (click)="btnClaimPrize(element)">Claim Prize</button>
+                        <button *ngIf="!element.finalized" type="button" class="btn btn-primary"
+                            (click)="btnBuyTicket(element)">Enter Lottery</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

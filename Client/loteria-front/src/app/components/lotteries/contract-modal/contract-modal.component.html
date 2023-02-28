@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title">Contract</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h6># {{lottery.id}}</h6>
+    <h6>Ticket Price: {{lottery.ticketPrice | currency}}</h6>
+    <h6>Tax: {{lottery.tax}} %</h6>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success btn-left" (click)="btnBuy()">BUY TICKET
+        ({{lottery.ticketPrice | currency}})</button>
+    <button type="button" class="btn btn-danger btn-right" (click)="btnClose()">CANCEL</button>
+</div>
