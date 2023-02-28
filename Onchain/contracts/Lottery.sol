@@ -18,16 +18,18 @@ contract Lottery is Ownable, VRFV2Consumer, ReentrancyGuard {
         bool claimed;
     }
 
+    // TODO: pegar a estrutura daqui e por na tela
     struct LotteryStruct {
         string name;
         uint256 ticketPrice;
         Counters.Counter ticketsCount;
         uint256 balance;
         bool finalized;
-        uint256 indexChainLink;
+        uint256 indexChainLink; // nao
         address winner;
-        bool claimed;
+        bool claimed; // nao
     }
+    // exibir nossa taxa
 
     mapping(uint256 => mapping(address => User)) ticketOwners;
     mapping(uint256 => mapping(uint256 => address)) tickets;
